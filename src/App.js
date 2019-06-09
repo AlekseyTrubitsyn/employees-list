@@ -1,10 +1,10 @@
 import React from 'react';
 
+import MainPage from './views/main-page';
+
 function App() {
   return (
-    <div className="App">
-      <h1>START</h1>
-    </div>
+    <MainPage />
   );
 }
 
