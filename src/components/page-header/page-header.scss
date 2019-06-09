@@ -1,0 +1,19 @@
+.page-header {
+  display: flex;
+  align-items: center;
+
+  .page-header__link,
+  .page-header__link + .page-header__title {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .page-header__link {
+    margin-right: 16px;
+  }
+}
+
+.page-header__title {
+  font-size: 32px;
+  line-height: 40px;
+}
