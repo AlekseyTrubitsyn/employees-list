@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
@@ -25,9 +27,9 @@ const defaultProps = {
 const PageHeader = ({ mix, link, title }) => (
   <header className={`${mix} page-header`}>
     {link && (
-      <a
+      <Link
         className="btn btn-primary page-header__link"
-        href={link.href}
+        to={link.href}
         title={link.text}
       >
         <FontAwesomeIcon
@@ -37,7 +39,7 @@ const PageHeader = ({ mix, link, title }) => (
         <span className="btn__text">
           {link.text}
         </span>
-      </a>
+      </Link>
     )}
     <h1 className="page-header__title">
       {title}
