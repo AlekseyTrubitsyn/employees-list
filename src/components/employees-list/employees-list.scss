@@ -1,0 +1,27 @@
+@import '../../constants/styles/width.scss';
+
+.employees-list {
+  .employees-list__table {
+    width: 100%;
+  }
+}
+
+.employees-list__header {
+  margin: 0 0 20px;
+}
+
+.employees-list-header {
+  text-align: center;
+
+  @media (min-width: $tablet-portrait-width) {
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .employees-list-header__message,
+  .employees-list-header__button {
+    margin: 10px;
+  }
+}
+
