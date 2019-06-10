@@ -1,0 +1,46 @@
+.employees-list-table {
+  background: #fcf6ed;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 2px 2px 4px #aaa;
+}
+
+.employees-list-table__head {
+  border-bottom: 1px solid #e0dad1;
+}
+
+.employees-list-table__tbody {
+  .employees-list-table__row {
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      background: #efe9e0;
+      border: none;
+      outline: none;
+    }
+
+    &:nth-of-type(2n + 1) {
+      &:hover,
+      &:focus {
+        background: #efe9e0;
+        border: none;
+        outline: none;
+      }
+
+      background: white;
+    }
+
+    &:last-of-type {
+      .employees-list-table__details-link::after {
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 6px;
+      }
+    }
+  }
+}
+
+.employees-list-table__cell {
+  padding: 20px;
+}
