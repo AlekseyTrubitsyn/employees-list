@@ -1,7 +1,15 @@
+import {
+  OPEN_EMPLOYEE_EDITOR,
+  CLOSE_EMPLOYEE_EDITOR,
+  EDIT_EMPLOYEE_DATA
+} from '../constants/action-types';
+
+const savedData = localStorage.getItem('employees');
+
 const initialState = {
-  employees: [{
+  employees: savedData ? JSON.parse(savedData) : [{
     id: '1',
-    name: 'Ирина ',
+    name: 'Ирина',
     surname: 'Сердюковская',
     position: 'Маркетолог',
     description: 'Как анализировать конкурентов',
@@ -29,11 +37,61 @@ const initialState = {
     surname: 'Тен',
     position: 'Front-end разработчик',
     description: 'Преподаватель курсов',
-  }]
+  }],
+  showEditor: false,
+  employeeToEdit: -1
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case OPEN_EMPLOYEE_EDITOR:
+      return {
+        ...state,
+        showEditor: true,
+        employeeToEdit: action.id
+      };
+
+    case CLOSE_EMPLOYEE_EDITOR:
+      return {
+        ...state,
+        showEditor: false,
+      };
+
+    case EDIT_EMPLOYEE_DATA:
+      return {
+        ...state,
+        showEditor: false,
+        employees: (() => {
+          const {
+            employees,
+            employeeToEdit: id
+          } = state;
+
+          const { payload } = action;
+
+          let newEmployees;
+
+          if (id === -1) {
+            const nextId = Math.max(...employees.map(item => +item.id)) + 1;
+
+            newEmployees = employees.concat({
+              ...payload,
+              id: String(nextId)
+            });
+          } else {
+            newEmployees = employees.map(item => (
+              (item.id !== id)
+                ? item
+                : ({ ...payload, id })
+            ));
+          }
+
+          localStorage.setItem('employees', JSON.stringify(newEmployees));
+
+          return newEmployees;
+        })()
+      };
+
     default:
       return state;
   }
