@@ -15,6 +15,7 @@ export const employeesListPropTypes = {
       position: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  onOpenEmployeeEditor: PropTypes.func.isRequired,
 };
 
 const propTypes = {
@@ -27,7 +28,8 @@ const propTypes = {
 const EmployeesList = (props) => {
   const {
     employees,
-    history
+    history,
+    onOpenEmployeeEditor
   } = props;
 
   const handleEmployeeClick = (id) => {
@@ -47,7 +49,7 @@ const EmployeesList = (props) => {
           title="Создать нового сотрудника"
           type="button"
           className="btn btn-primary employees-list-header__create-button"
-          onClick={() => console.log('Создать нового сотрудника')}
+          onClick={() => onOpenEmployeeEditor(-1)}
         >
           {'Создать нового сотрудника'}
         </button>
