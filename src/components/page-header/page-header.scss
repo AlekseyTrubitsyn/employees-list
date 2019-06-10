@@ -1,19 +1,42 @@
+@import "../../constants/styles/width.scss";
+
 .page-header {
+  text-align: center;
   display: flex;
   align-items: center;
+  flex-direction: column;
+
+  @media (min-width: $tablet-portrait-width) {
+    text-align: left;
+    flex-direction: row;
+  }
 
   .page-header__link,
   .page-header__link + .page-header__title {
-    display: inline-block;
-    vertical-align: top;
+    display: block;
+
+    @media (min-width: $tablet-portrait-width) {
+      display: inline-block;
+      vertical-align: top;
+    }
   }
 
   .page-header__link {
-    margin-right: 16px;
+    margin: 0 0 20px;
+
+    @media (min-width: $tablet-portrait-width) {
+      margin-bottom: 0;
+      margin-right: 16px;
+    }
   }
 }
 
 .page-header__title {
-  font-size: 32px;
-  line-height: 40px;
+  font-size: 22px;
+  line-height: 30px;
+
+  @media (min-width: $tablet-portrait-width) {
+    font-size: 32px;
+    line-height: 40px;
+  }
 }
