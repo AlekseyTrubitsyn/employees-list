@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import Employee from '../employee';
+
 const propTypes = {
   mix: PropTypes.string,
   employees: PropTypes.arrayOf(
@@ -34,26 +36,13 @@ const EmployeesListMobile = ({ mix, employees }) => (
             {'Подробней'}
           </span>
         </Link>
-        <div className="employees-list-item__grid employees-list-item-grid">
-          <span className="employees-list-item-grid__cell employees-list-item-grid__cell_key">
-            {'Имя'}
-          </span>
-          <span className="employees-list-item-grid__cell employees-list-item-grid__cell_value">
-            {name}
-          </span>
-          <span className="employees-list-item-grid__cell employees-list-item-grid__cell_key">
-            {'Фамилия'}
-          </span>
-          <span className="employees-list-item-grid__cell employees-list-item-grid__cell_value">
-            {surname}
-          </span>
-          <span className="employees-list-item-grid__cell employees-list-item-grid__cell_key">
-            {'Должность'}
-          </span>
-          <span className="employees-list-item-grid__cell employees-list-item-grid__cell_value">
-            {position}
-          </span>
-        </div>
+        <Employee
+          mix="employees-list-item__grid"
+          id={id}
+          name={name}
+          surname={surname}
+          position={position}
+        />
       </li>
     ))}
   </ul>

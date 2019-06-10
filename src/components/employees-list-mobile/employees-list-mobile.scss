@@ -27,24 +27,3 @@
     left: 0;
   }
 }
-
-.employees-list-item-grid {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-}
-
-.employees-list-item-grid__cell {
-  display: inline-block;
-  padding: 16px 20px;
-  border-top: 1px solid #e0dad1;
-}
-
-.employees-list-item-grid__cell_key {
-  border-right: 1px solid #e0dad1;
-  color: #777;
-}
-
-.employees-list-item-grid__cell:first-of-type,
-.employees-list-item-grid__cell:nth-of-type(2) {
-  border-top: none;
-}

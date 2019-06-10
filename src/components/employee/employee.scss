@@ -1,0 +1,20 @@
+.employee {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.employee__grid-cell {
+  display: inline-block;
+  padding: 16px 20px;
+  border-top: 1px solid #e0dad1;
+}
+
+.employee__grid-cell_key {
+  border-right: 1px solid #e0dad1;
+  color: #777;
+}
+
+.employee__grid-cell:first-of-type,
+.employee__grid-cell:nth-of-type(2) {
+  border-top: none;
+}
