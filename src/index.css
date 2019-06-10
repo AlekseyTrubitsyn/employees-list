@@ -97,3 +97,18 @@ button::-moz-focus-inner {
   background: #3F51B5 linear-gradient(to right, #3F51B5, #303F9F);
   color: white;
 }
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: #448AFF;
+  outline: none;
+  border: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
