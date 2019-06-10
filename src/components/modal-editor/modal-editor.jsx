@@ -37,6 +37,32 @@ class ModalEditor extends Component {
     };
   }
 
+  componentDidMount = () => {
+    document.addEventListener('keyup', this.handleKeyUp);
+  }
+
+  componentWillUnmount = () => {
+    document.removeEventListener('keyup', this.handleKeyUp);
+  }
+
+  handleKeyUp = (e) => {
+    const { onClose } = this.props;
+    const { keyCode } = e;
+
+    switch (keyCode) {
+      case 13:
+        this.handleSubmit(e);
+        break;
+
+      case 27:
+        onClose();
+        break;
+
+      default:
+        break;
+    }
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
 
@@ -184,6 +210,7 @@ class ModalEditor extends Component {
             </button>
           </form>
         </div>
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
         <div
           className="overlay"
           onClick={onClose}
