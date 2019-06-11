@@ -51,7 +51,7 @@ const EmployeesList = (props) => {
           className="btn btn-primary employees-list-header__create-button"
           onClick={() => onOpenEmployeeEditor(-1)}
         >
-          {'Создать нового сотрудника'}
+          {'Добавить'}
         </button>
       </div>
       {(window.innerWidth < 768
