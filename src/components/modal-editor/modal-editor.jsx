@@ -110,6 +110,10 @@ class ModalEditor extends Component {
   render() {
     const {
       id,
+      name: _name,
+      surname: _surname,
+      position: _position,
+      description: _description,
       onClose
     } = this.props;
 
@@ -119,6 +123,9 @@ class ModalEditor extends Component {
       position,
       description
     } = this.state;
+
+    const disabledSubmit = !(name && surname && position && description)
+      || (name === _name && surname === _surname && position === _position && description === _description);
 
     return (
       <Fragment>
@@ -133,7 +140,7 @@ class ModalEditor extends Component {
           </button>
           <h3 className="modal-editor__title">
             {(id === '-1')
-              ? 'Создание нового сотрудника'
+              ? 'Добавление нового сотрудника'
               : 'Редактирование карточки сотрудника'
             }
           </h3>
@@ -145,7 +152,7 @@ class ModalEditor extends Component {
           >
             <label
               className="modal-editor-form__label"
-              htmlFor="#modal-editor-form__name-field"
+              htmlFor="modal-editor-form__name-field"
             >
               {'Имя'}
 
@@ -160,7 +167,7 @@ class ModalEditor extends Component {
             </label>
             <label
               className="modal-editor-form__label"
-              htmlFor="#modal-editor-form__surname-field"
+              htmlFor="modal-editor-form__surname-field"
             >
               {'Фамилия'}
               <input
@@ -174,7 +181,7 @@ class ModalEditor extends Component {
             </label>
             <label
               className="modal-editor-form__label"
-              htmlFor="#modal-editor-form__position-field"
+              htmlFor="modal-editor-form__position-field"
             >
               {'Должность'}
               <input
@@ -188,7 +195,7 @@ class ModalEditor extends Component {
             </label>
             <label
               className="modal-editor-form__label"
-              htmlFor="#modal-editor-form__description-field"
+              htmlFor="modal-editor-form__description-field"
             >
               {'Описание'}
               <textarea
@@ -203,7 +210,11 @@ class ModalEditor extends Component {
             <button
               className="btn btn-primary modal-editor__submit-button"
               type="button"
-              title="Сохранить"
+              title={disabledSubmit
+                ? `Необходимо ${id === '-1' ? 'заполнить все поля' : 'изменить хотя бы одно поле'}`
+                : 'Сохранить'
+              }
+              disabled={disabledSubmit}
               onClick={this.handleSubmit}
             >
               {'Сохранить изменения'}
