@@ -39,10 +39,12 @@ class ModalEditor extends Component {
 
   componentDidMount = () => {
     document.addEventListener('keyup', this.handleKeyUp);
+    document.body.style.overflow = 'hidden';
   }
 
   componentWillUnmount = () => {
     document.removeEventListener('keyup', this.handleKeyUp);
+    document.body.style.overflow = '';
   }
 
   handleKeyUp = (e) => {
@@ -50,10 +52,6 @@ class ModalEditor extends Component {
     const { keyCode } = e;
 
     switch (keyCode) {
-      case 13:
-        this.handleSubmit(e);
-        break;
-
       case 27:
         onClose();
         break;
@@ -66,7 +64,10 @@ class ModalEditor extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const { onSubmit } = this.props;
+    const {
+      id,
+      onSubmit
+    } = this.props;
 
     const {
       name,
@@ -74,6 +75,12 @@ class ModalEditor extends Component {
       position,
       description
     } = this.state;
+
+    if (!this.checkFields()) {
+      console.error(`Необходимо ${id === '-1' ? 'заполнить все поля' : 'изменить хотя бы одно поле'}`);
+
+      return;
+    }
 
     onSubmit({
       name,
@@ -107,13 +114,28 @@ class ModalEditor extends Component {
     });
   }
 
-  render() {
+  checkFields = () => {
     const {
-      id,
       name: _name,
       surname: _surname,
       position: _position,
-      description: _description,
+      description: _description
+    } = this.props;
+
+    const {
+      name,
+      surname,
+      position,
+      description
+    } = this.state;
+
+    return (name && surname && position && description)
+      && (name !== _name || surname !== _surname || position !== _position || description !== _description);
+  }
+
+  render() {
+    const {
+      id,
       onClose
     } = this.props;
 
@@ -124,8 +146,7 @@ class ModalEditor extends Component {
       description
     } = this.state;
 
-    const disabledSubmit = !(name && surname && position && description)
-      || (name === _name && surname === _surname && position === _position && description === _description);
+    const disabledSubmit = !this.checkFields();
 
     return (
       <Fragment>
